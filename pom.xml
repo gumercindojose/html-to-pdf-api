@@ -29,31 +29,27 @@
     <properties>
         <java.version>25</java.version>
 <!--        <spring.boot.version>3.2.0</spring.boot.version>-->
-        <itext.version>8.0.5</itext.version>
+        <playwright.version>1.47.0</playwright.version>
     </properties>
 
     <dependencies>
         <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.6.0</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
 <!--            <version>${spring.boot.version}</version>-->
         </dependency>
 
-        <!-- iText 7 Core (AGPL) -->
+        <!-- Playwright para renderização HTML/CSS completa -->
         <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>itext7-core</artifactId>
-            <version>8.0.5</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
-        <!-- iText pdfHTML (AGPL) -->
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>html2pdf</artifactId>
-            <version>5.0.5</version>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version>${playwright.version}</version>
         </dependency>
 
         <!-- Para testes -->

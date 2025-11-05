@@ -1,12 +1,8 @@
 package com.publico.htmltopdfapi.controller;
 
-import com.itextpdf.html2pdf.ConverterProperties;
-import com.itextpdf.html2pdf.HtmlConverter;
-import jakarta.servlet.http.HttpServletResponse;
+import com.publico.htmltopdfapi.service.GenerateService;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.ByteArrayOutputStream;
 
 @RestController
 @RequestMapping("/api")
@@ -14,18 +10,18 @@ public class PdfController {
 
     // MUDE PARA O SEU REPOSITÓRIO REAL
     private static final String SOURCE_CODE_URL = "https://github.com/seuusuario/html-to-pdf-service";
+    
+    private final GenerateService generateService;
+
+    public PdfController(GenerateService generateService) {
+        this.generateService = generateService;
+    }
 
     @PostMapping(value = "/html-to-pdf", produces = "application/pdf")
-    public ResponseEntity<byte[]> convertHtmlToPdf(
-            @RequestBody String html,
-            HttpServletResponse response) {
+    public ResponseEntity<byte[]> convertHtmlToPdf(@RequestBody String html) {
 
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-
-            ConverterProperties props = new ConverterProperties();
-            HtmlConverter.convertToPdf(html, baos, props);
-
-            byte[] pdfBytes = baos.toByteArray();
+        try {
+            byte[] pdfBytes = generateService.generatePdf(html);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
@@ -43,10 +39,10 @@ public class PdfController {
     @GetMapping("/")
     public ResponseEntity<String> home() {
         String body = """
-                <h1>HTML to PDF Service (AGPL)</h1>
+                <h1>HTML to PDF Service</h1>
                 <p>Envie um POST com HTML para <code>/api/html-to-pdf</code></p>
                 <p><strong>Código-fonte:</strong> <a href="%s">%s</a></p>
-                <p>Licenciado sob AGPLv3. Uso comercial requer licença da iText.</p>
+                <p>Powered by Playwright - Suporte completo a CSS moderno (Flexbox, Grid, Gradientes, Animações)</p>
                 """.formatted(SOURCE_CODE_URL, SOURCE_CODE_URL);
 
         HttpHeaders headers = new HttpHeaders();

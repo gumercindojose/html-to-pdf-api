@@ -4,3 +4,12 @@ spring:
   servlet:
     multipart:
       enabled: false
+
+pdf:
+  format: A4  # Opções: A4, Letter, Legal, Tabloid, Ledger, A0, A1, A2, A3, A5, A6
+  margin:
+    top: 20    # Margem superior em pixels
+    bottom: 20 # Margem inferior em pixels
+    left: 20   # Margem esquerda em pixels
+    right: 20  # Margem direita em pixels
+  timeout: 30000 # Timeout para carregamento da página em milissegundos
