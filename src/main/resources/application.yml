@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: html-to-pdf-api
+  servlet:
+    multipart:
+      enabled: false

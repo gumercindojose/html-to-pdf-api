@@ -28,16 +28,39 @@
     </scm>
     <properties>
         <java.version>25</java.version>
+<!--        <spring.boot.version>3.2.0</spring.boot.version>-->
+        <itext.version>8.0.5</itext.version>
     </properties>
+
     <dependencies>
+        <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+<!--            <version>${spring.boot.version}</version>-->
         </dependency>
 
+        <!-- iText 7 Core (AGPL) -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>8.0.5</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+        <!-- iText pdfHTML (AGPL) -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>html2pdf</artifactId>
+            <version>5.0.5</version>
+        </dependency>
+
+        <!-- Para testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+<!--            <version>${spring.boot.version}</version>-->
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -50,5 +73,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <licenses>
+        <license>
+            <name>GNU Affero General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/agpl-3.0.txt</url>
+        </license>
+    </licenses>
 
 </project>
